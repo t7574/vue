@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一个简单的vue案例</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div class="div">
+        <input type="button" value="开始" @click="start">
+        <input type="button" value="结束" @click="stop">
+       <h1> <p>{{msg}}</p></h1>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: ".div",
+            data: {
+                msg: "123456789",
+                timeId: null
+            },
+            methods: {
+                start() {
+                    clearInterval(this.timeId)
+                    this.timeId = setInterval(() => {
+                        //字符串的截取方式如下两个参数，便是截取从0开始1位
+                        var start = this.msg.substr(0, 1)
+                        //字符串的截取方式如下参数，便是表示从1开始截取剩下的
+                        var end = this.msg.substr(1)
+                        //实现数字轮播的效果
+                        this.msg = end + start
+                    }, 300)
+                },
+                stop() {
+                    clearInterval(this.timeId)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

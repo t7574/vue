@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div class="div">
+            <!-- v-model指令是在input标签上进行元素双向绑定 -->
+        <input type="text" v-model="n1">
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="_">_</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="n2">
+        <input type="button" value="=" @click="click">
+        <input disabled type="text" v-model="result">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: ".div",
+            data: {
+                n1: 0,
+                n2: 0,
+                opt: "+",
+                result: 0
+            },
+            methods: {
+                click() {
+                    switch (this.opt) {
+                        case "+":
+                            this.result = parseFloat(this.n1) + parseFloat(this.n2)
+                            break;
+                        case "_":
+                            this.result = parseFloat(this.n1) - parseFloat(this.n2)
+                            break;
+                        case "*":
+                            this.result = parseFloat(this.n1) * parseFloat(this.n2)
+                            break;
+                        case "/":
+                            this.result = parseFloat(this.n1) / parseFloat(this.n2)
+                            break;
+                    }
+
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
